@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#F5F2EA" />
+  <title>Verdure Dental — Premium Dentistry in Manhattan</title>
+  <meta name="description" content="Verdure Dental is a boutique dental practice in Midtown Manhattan offering calm, patient-centered care with modern technology. Book your consultation today." />
+
+  <!-- ===== Fonts: soft warm mincho serif + humanist sans (quiet Japanese-inspired) ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- ===== Tailwind CSS via CDN ===== -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind theme extension — brand palette, fonts, shadows.
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest:   '#123A29', // deep jewel emerald — headings / dark surfaces / buttons
+            pine:     '#1B4A35', // rich pine
+            moss:     '#2C6046', // mid emerald (hover)
+            euca:     '#3E7E5D', // saturated emerald accent
+            jade:     '#2FA46F', // vivid jade — highlights & glow
+            sage:     '#8EB59B', // sage
+            sagesoft: '#BAD1BF',
+            mint:     '#E2EFE6', // pale mint wash
+            ivory:    '#F4EFE4',
+            warm:     '#FCFBF6', // warm white
+            beige:    '#ECE4D1',
+            sand:     '#D7CBB0',
+            ink:      '#15281F', // primary text (deep green-black)
+            muted:    '#4B5A50', // secondary text
+            gold:     '#B08A4E', // antique gold — luxury accent
+            goldsoft: '#D8C299' // champagne gold
+          },
+          fontFamily: {
+            serif: ['"Shippori Mincho"', 'ui-serif', 'Georgia', 'serif'],
+            sans:  ['"Zen Kaku Gothic New"', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          },
+          // Numeric weight aliases so font-400/500/600/700 resolve correctly
+          fontWeight: { '400': '400', '500': '500', '600': '600', '700': '700' },
+          boxShadow: {
+            soft:  '0 26px 70px -24px rgba(18,42,30,0.40)',
+            glass: '0 2px 10px rgba(18,42,30,0.06), 0 20px 50px -16px rgba(18,42,30,0.26)',
+            lift:  '0 8px 20px rgba(18,42,30,0.10), 0 46px 92px -30px rgba(18,42,30,0.52)',
+            glow:  '0 30px 80px -24px rgba(47,164,111,0.48)'
+          },
+          borderRadius: { '4xl': '2rem', '5xl': '2.75rem' },
+          letterSpacing: { widest2: '0.28em' }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root { --nav-h: 78px; }
+    html { -webkit-tap-highlight-color: transparent; }
+    body { background: #FCFBF7; color: #1F2E26; font-family: '"Zen Kaku Gothic New"', sans-serif; }
+
+    /* Layered emerald ambient backdrop with a whisper of gold */
+    .page-bg {
+      position: relative;
+      background:
+        radial-gradient(58% 48% at 10% 6%,  rgba(47,164,111,0.16) 0%, rgba(47,164,111,0) 60%),
+        radial-gradient(50% 44% at 94% 2%,  rgba(62,126,93,0.18) 0%, rgba(62,126,93,0) 55%),
+        radial-gradient(60% 55% at 88% 96%, rgba(186,209,191,0.50) 0%, rgba(186,209,191,0) 62%),
+        radial-gradient(42% 42% at 52% 38%, rgba(176,138,78,0.07) 0%, rgba(176,138,78,0) 70%),
+        linear-gradient(180deg, #FCFBF6 0%, #F5F0E4 46%, #F1EBDD 100%);
+    }
+    /* Slow drifting aurora of emerald + a whisper of gold */
+    .page-bg::before {
+      content: ""; position: fixed; inset: -20% -10% -10% -10%; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(30% 30% at 20% 30%, rgba(47,164,111,0.20), transparent 70%),
+        radial-gradient(26% 26% at 80% 22%, rgba(176,138,78,0.12), transparent 70%),
+        radial-gradient(34% 34% at 60% 82%, rgba(62,126,93,0.20), transparent 70%);
+      filter: blur(48px);
+      animation: aurora 26s ease-in-out infinite alternate;
+    }
+    @keyframes aurora {
+      0%   { transform: translate3d(0,0,0) scale(1); }
+      50%  { transform: translate3d(2.5%, -2%, 0) scale(1.08); }
+      100% { transform: translate3d(-2%, 2.5%, 0) scale(1.04); }
+    }
+    /* Fine film grain — premium printed-paper texture */
+    .page-bg::after {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .05; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    /* keep real content above the aurora + grain */
+    header, main, footer, .fab-stack, #toastRegion { position: relative; z-index: 1; }
+
+    /* Glassmorphism surfaces — frosted, floating, with inner light + real depth */
+    .glass {
+      background: linear-gradient(155deg, rgba(255,255,255,0.74), rgba(250,252,249,0.46));
+      backdrop-filter: blur(26px) saturate(165%);
+      -webkit-backdrop-filter: blur(26px) saturate(165%);
+      border: 1px solid rgba(255,255,255,0.78);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -16px 34px -20px rgba(18,58,41,0.20),
+        0 14px 40px -14px rgba(18,42,30,0.24);
+    }
+    .glass-soft {
+      background: rgba(252,251,247,0.6);
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+    .glass-forest {
+      background: linear-gradient(155deg, rgba(18,58,41,0.74), rgba(15,40,31,0.62));
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+      border: 1px solid rgba(216,194,153,0.18);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+    }
+    /* Faint frosted wrapper to lift whole sections off the page (depth) */
+    .glass-panel {
+      background: linear-gradient(160deg, rgba(255,255,255,0.38), rgba(255,255,255,0.12));
+      backdrop-filter: blur(12px) saturate(125%);
+      -webkit-backdrop-filter: blur(12px) saturate(125%);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.65), 0 40px 80px -44px rgba(18,42,30,0.34);
+    }
+
+    /* Scroll-reveal (fade + slide-up) */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s cubic-bezier(.16,.84,.44,1), transform 1s cubic-bezier(.16,.84,.44,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: .09s; } .reveal-d2 { transition-delay: .18s; }
+    .reveal-d3 { transition-delay: .27s; } .reveal-d4 { transition-delay: .36s; }
+
+    /* Gentle floating drift for glass chips */
+    @keyframes floaty { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-12px);} }
+    .floaty { animation: floaty 8s ease-in-out infinite; }
+    .floaty-slow { animation: floaty 12s ease-in-out infinite; }
+
+    /* Section scroll offset so anchors clear the fixed nav */
+    section[id] { scroll-margin-top: 96px; }
+
+    /* ---- Hand-crafted micro-interactions ---------------------------------- */
+
+    /* Luxe button: light sweep on hover + arrow nudge */
+    .btn-lux { position: relative; overflow: hidden; isolation: isolate; }
+    .btn-lux::after {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.28) 50%, transparent 80%);
+      transform: translateX(-120%); transition: transform .7s cubic-bezier(.16,.84,.44,1);
+    }
+    .btn-lux:hover::after { transform: translateX(120%); }
+    .btn-lux .arrow { transition: transform .35s cubic-bezier(.16,.84,.44,1); }
+    .btn-lux:hover .arrow { transform: translateX(4px); }
+
+    /* Animated nav underline */
+    .navlink { position: relative; }
+    .navlink::after {
+      content: ""; position: absolute; left: 14px; right: 14px; bottom: 6px; height: 1.5px;
+      background: currentColor; border-radius: 2px; transform: scaleX(0); transform-origin: left;
+      transition: transform .35s cubic-bezier(.16,.84,.44,1); opacity: .8;
+    }
+    .navlink:hover::after { transform: scaleX(1); }
+
+    /* Luxe card: lift, brighten border, cursor-follow spotlight */
+    .card-lux { position: relative; transition: transform .45s cubic-bezier(.16,.84,.44,1), box-shadow .45s ease, border-color .45s ease; }
+    .card-lux:hover { transform: translateY(-6px); }
+    .card-lux::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
+      transition: opacity .4s ease;
+      background: radial-gradient(240px circle at var(--mx,50%) var(--my,0%), rgba(47,164,111,0.18), transparent 60%);
+    }
+    .card-lux:hover::before { opacity: 1; }
+
+    /* Icon badge micro-pop */
+    .icon-badge { transition: transform .4s cubic-bezier(.34,1.56,.64,1), background-color .4s ease, color .4s ease; }
+    .group:hover .icon-badge { transform: translateY(-2px) rotate(-3deg); }
+
+    /* ---- "What we do" (services) — bespoke entrance + playful hover ---- */
+    /* Cards spring up with a soft rotate + settle; staggered by index */
+    .svc-card {
+      opacity: 0; transform: translateY(46px) scale(.9) rotate(-2deg);
+      transition: opacity .7s ease, transform .8s cubic-bezier(.34,1.4,.5,1);
+    }
+    .svc-card.in { opacity: 1; transform: none; }
+    /* emoji tile: idle float, then a bouncy hop + tilt on hover */
+    @keyframes emojiFloat { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-4px) rotate(2deg); } }
+    .svc-emoji { animation: emojiFloat 5s ease-in-out infinite; transition: transform .45s cubic-bezier(.34,1.56,.64,1); transform-origin: 50% 70%; }
+    .group:hover .svc-emoji { animation: none; transform: translateY(-6px) scale(1.18) rotate(-8deg); }
+    /* animated gradient ring that sweeps in on hover */
+    .svc-card::after {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+      background: linear-gradient(130deg, rgba(47,164,111,0.9), rgba(176,138,78,0.5) 25%, rgba(157,184,162,0) 45%, rgba(157,184,162,0) 60%, rgba(176,138,78,0.45) 80%, rgba(47,164,111,0.75));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      opacity: 0; transition: opacity .5s ease;
+    }
+    .svc-card:hover::after { opacity: 1; }
+
+    /* Shimmer for small pill badges */
+    @keyframes shimmer { to { background-position: 200% center; } }
+    .shimmer {
+      background: linear-gradient(90deg, rgba(176,138,78,0) 0%, rgba(176,138,78,0.55) 50%, rgba(176,138,78,0) 100%);
+      background-size: 200% auto; animation: shimmer 3.5s linear infinite;
+    }
+
+    /* Emerald→gold gradient text for accent words */
+    .text-gradient { background: linear-gradient(115deg, #2FA46F, #3E7E5D 45%, #B08A4E 105%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    /* Gold eyebrow label with a lead rule — the luxury tell */
+    .eyebrow { display: inline-flex; align-items: center; gap: .7rem; color: #9A7838; font-weight: 600; font-size: .75rem; letter-spacing: .28em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 30px; height: 1px; background: linear-gradient(90deg, transparent, #B08A4E); }
+    .text-center > .eyebrow::after, .eyebrow.center::after { content: ""; width: 30px; height: 1px; background: linear-gradient(90deg, #B08A4E, transparent); }
+
+    /* Refined focus ring */
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid #3E7E5D; outline-offset: 3px; border-radius: 8px;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 11px; }
+    ::-webkit-scrollbar-track { background: #F1EBDD; }
+    ::-webkit-scrollbar-thumb { background: #A9C4B0; border-radius: 999px; border: 3px solid #F1EBDD; }
+    ::-webkit-scrollbar-thumb:hover { background: #3E7E5D; }
+
+    /* Hairline divider (antique gold) */
+    .hairline { height: 1px; background: linear-gradient(90deg, transparent, rgba(176,138,78,0.6), transparent); }
+
+    /* Scroll progress bar */
+    #progress { transform-origin: left; transform: scaleX(0); transition: transform .1s linear; }
+
+    /* Modal enter animation */
+    @keyframes modalIn { from { opacity: 0; transform: translateY(18px) scale(.98);} to { opacity: 1; transform: none;} }
+    .modal-card { animation: modalIn .4s cubic-bezier(.16,.84,.44,1); }
+
+    /* Toast */
+    @keyframes toastIn { from { opacity:0; transform: translateY(14px);} to { opacity:1; transform:none;} }
+    .toast { animation: toastIn .3s ease forwards; }
+
+    /* Pulse ring for floating action buttons */
+    @keyframes fabPulse { 0% { box-shadow: 0 0 0 0 rgba(47,164,111,0.45);} 70% { box-shadow: 0 0 0 14px rgba(47,164,111,0);} 100% { box-shadow: 0 0 0 0 rgba(47,164,111,0);} }
+    .fab-pulse { animation: fabPulse 2.8s ease-out infinite; }
+
+    /* Text balance for headlines */
+    .balance { text-wrap: balance; }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal, .svc-card { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .floaty, .floaty-slow, .modal-card, .toast, .shimmer, .fab-pulse, .svc-emoji, .page-bg::before { animation: none !important; }
+      * { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body class="page-bg font-sans text-ink antialiased selection:bg-sage/40">
+
+  <!-- Skip link (accessibility) -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-4 focus:left-4 focus:glass focus:px-4 focus:py-2 focus:rounded-full focus:text-forest">Skip to content</a>
+
+  <!-- Scroll progress bar -->
+  <div id="progress" class="fixed top-0 left-0 right-0 z-50 h-[3px] bg-gradient-to-r from-jade via-euca to-forest"></div>
+
+  <!-- ============================================================= -->
+  <!-- NAVIGATION (floating glass bar)                                -->
+  <!-- ============================================================= -->
+  <header id="nav" class="fixed inset-x-0 top-0 z-40 px-3 sm:px-5 pt-3 sm:pt-4 transition-all duration-300">
+    <nav class="mx-auto max-w-7xl glass rounded-full shadow-glass px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-300" aria-label="Primary">
+      <!-- Logo: sculpted "V" monogram -->
+      <a href="#home" class="flex items-center gap-3 group" aria-label="Verdure Dental home">
+        <span class="relative grid place-items-center w-11 h-11 rounded-2xl bg-gradient-to-br from-moss via-pine to-forest text-warm shadow-soft overflow-hidden ring-1 ring-goldsoft/40 group-hover:shadow-glow transition-shadow duration-500">
+          <span class="absolute -inset-1 bg-gradient-to-tr from-transparent via-goldsoft/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+          <span class="font-serif text-2xl leading-none translate-y-[1px] select-none">V</span>
+        </span>
+        <span class="leading-tight">
+          <span class="block font-serif text-lg font-600 text-forest tracking-tight">Verdure</span>
+          <span class="block text-[10px] uppercase tracking-widest2 text-muted -mt-0.5">Dental · NYC</span>
+        </span>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden lg:flex items-center gap-1 text-[15px] text-ink/80">
+        <a href="#about"    class="navlink px-3.5 py-2 rounded-full hover:text-forest transition-colors duration-200">About</a>
+        <a href="#services" class="navlink px-3.5 py-2 rounded-full hover:text-forest transition-colors duration-200">Services</a>
+        <a href="#doctors"  class="navlink px-3.5 py-2 rounded-full hover:text-forest transition-colors duration-200">Doctors</a>
+        <a href="#reviews"  class="navlink px-3.5 py-2 rounded-full hover:text-forest transition-colors duration-200">Reviews</a>
+        <a href="#contact"  class="navlink px-3.5 py-2 rounded-full hover:text-forest transition-colors duration-200">Contact</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="tel:+10000000000" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-forest hover:bg-white/60 transition-colors duration-200 text-[15px]">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>
+          Call
+        </a>
+        <button data-open-book class="btn-lux inline-flex items-center gap-2 bg-gradient-to-br from-moss to-forest text-warm px-5 py-2.5 rounded-full text-[15px] font-500 shadow-soft hover:shadow-glow transition-shadow duration-500 cursor-pointer">
+          Book Consultation
+        </button>
+        <!-- Mobile menu button -->
+        <button id="menuBtn" class="lg:hidden grid place-items-center w-11 h-11 rounded-full glass-soft text-forest cursor-pointer" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu panel -->
+    <div id="mobileMenu" class="lg:hidden mx-auto max-w-7xl mt-2 origin-top scale-95 opacity-0 pointer-events-none transition-all duration-300">
+      <div class="glass rounded-3xl shadow-glass p-3 flex flex-col text-[16px]">
+        <a href="#about"    class="px-4 py-3 rounded-2xl hover:bg-white/60 transition-colors">About</a>
+        <a href="#services" class="px-4 py-3 rounded-2xl hover:bg-white/60 transition-colors">Services</a>
+        <a href="#doctors"  class="px-4 py-3 rounded-2xl hover:bg-white/60 transition-colors">Doctors</a>
+        <a href="#reviews"  class="px-4 py-3 rounded-2xl hover:bg-white/60 transition-colors">Reviews</a>
+        <a href="#contact"  class="px-4 py-3 rounded-2xl hover:bg-white/60 transition-colors">Contact</a>
+        <a href="tel:+10000000000" class="px-4 py-3 rounded-2xl hover:bg-white/60 transition-colors">Call (000) 000-0000</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================================================= -->
+    <!-- HERO                                                           -->
+    <!-- ============================================================= -->
+    <section id="home" class="relative overflow-hidden pt-32 sm:pt-40 lg:pt-44 pb-20 lg:pb-28">
+      <!-- floating glass orbs (subtle pointer parallax) -->
+      <div data-par="26" class="parallax pointer-events-none absolute -left-20 top-28 w-64 h-64 rounded-full bg-gradient-to-br from-sage/45 to-euca/15 blur-3xl"></div>
+      <div data-par="-20" class="parallax pointer-events-none absolute right-0 top-48 w-44 h-44 rounded-full bg-gradient-to-br from-jade/25 to-transparent blur-3xl"></div>
+      <div data-par="16" class="parallax pointer-events-none absolute right-1/3 -bottom-16 w-60 h-60 rounded-full bg-gradient-to-tr from-sagesoft/55 to-transparent blur-3xl"></div>
+
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Copy -->
+        <div class="lg:col-span-6 reveal">
+          <span class="inline-flex items-center gap-2 glass rounded-full pl-2 pr-4 py-1.5 text-sm text-moss shadow-glass">
+            <span class="relative inline-grid place-items-center w-6 h-6 rounded-full bg-gradient-to-br from-sagesoft to-mint text-base overflow-hidden leading-none">
+              <span class="absolute inset-0 shimmer opacity-50"></span>
+              <span class="relative">✨</span>
+            </span>
+            Boutique dentistry · Midtown Manhattan
+          </span>
+
+          <h1 class="mt-6 font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.04] tracking-[-0.01em] text-forest balance">
+            Calm, considered care for a <span class="italic text-gradient">healthier</span> smile.
+          </h1>
+
+          <p class="mt-6 text-lg text-muted max-w-xl leading-relaxed">
+            Modern dentistry in Midtown, minus the rush. Straight answers, gentle hands, and a room that feels nothing like the waiting room you’re picturing.
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-3">
+            <button data-open-book class="btn-lux inline-flex items-center gap-2 bg-gradient-to-br from-moss to-forest text-warm px-7 py-3.5 rounded-full font-500 shadow-soft hover:shadow-glow transition-shadow duration-500 cursor-pointer">
+              Book Consultation
+              <svg viewBox="0 0 24 24" class="arrow w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <a href="tel:+10000000000" class="btn-lux inline-flex items-center gap-2 glass px-7 py-3.5 rounded-full font-500 text-forest hover:shadow-lift transition-all duration-300">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>
+              Call Now
+            </a>
+          </div>
+
+          <!-- trust stats with animated counters -->
+          <dl class="mt-12 grid grid-cols-3 gap-4 max-w-lg">
+            <div class="reveal reveal-d1">
+              <dd class="font-serif text-3xl text-forest"><span class="counter" data-target="18">0</span>+</dd>
+              <dt class="text-sm text-muted mt-1">Years of care</dt>
+            </div>
+            <div class="reveal reveal-d2">
+              <dd class="font-serif text-3xl text-forest"><span class="counter" data-target="12">0</span>k+</dd>
+              <dt class="text-sm text-muted mt-1">Smiles restored</dt>
+            </div>
+            <div class="reveal reveal-d3">
+              <dd class="font-serif text-3xl text-forest"><span class="counter" data-target="49" data-decimal="1">0</span></dd>
+              <dt class="text-sm text-muted mt-1">Avg. rating</dt>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Hero visual: glassy composition, translucent V monogram, floating chips -->
+        <div class="lg:col-span-6 reveal reveal-d2">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <div id="heroCard" class="relative aspect-[4/5] rounded-5xl overflow-hidden shadow-lift bg-gradient-to-br from-pine via-moss to-euca">
+              <!-- glow blobs -->
+              <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-white/25 blur-2xl"></div>
+              <div class="absolute -bottom-8 -left-12 w-64 h-64 rounded-full bg-jade/40 blur-2xl"></div>
+              <!-- concentric glass rings -->
+              <div class="absolute inset-0 grid place-items-center">
+                <div class="w-[92%] h-[92%] rounded-full border border-white/15"></div>
+              </div>
+              <div class="absolute inset-0 grid place-items-center">
+                <div class="w-[70%] h-[70%] rounded-full border border-white/20"></div>
+              </div>
+              <div class="absolute inset-0 grid place-items-center">
+                <div class="w-[48%] h-[48%] rounded-full border border-white/25"></div>
+              </div>
+              <!-- translucent monogram -->
+              <div class="absolute inset-0 grid place-items-center">
+                <span class="font-serif text-[13rem] leading-none text-white/12 select-none">V</span>
+              </div>
+              <!-- glass sheen -->
+              <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent"></div>
+              <!-- floating quote card -->
+              <div class="absolute left-5 bottom-5 right-5 glass rounded-3xl p-5 shadow-glass">
+                <p class="font-serif text-forest text-lg leading-snug">“You leave lighter than you came.”</p>
+                <p class="text-sm text-muted mt-1">— a quiet promise to every patient</p>
+              </div>
+            </div>
+            <!-- floating badge (top) -->
+            <div class="absolute -top-5 -left-4 glass rounded-2xl px-4 py-3 shadow-lift flex items-center gap-3 floaty">
+              <span class="grid place-items-center w-10 h-10 rounded-xl bg-gradient-to-br from-mint to-sagesoft text-xl leading-none">🧼</span>
+              <div class="text-sm leading-tight">
+                <p class="font-600 text-forest">Sterile &amp; safe</p>
+                <p class="text-muted">Hospital-grade protocols</p>
+              </div>
+            </div>
+            <!-- floating badge (bottom-right) -->
+            <div class="absolute -bottom-5 -right-3 glass rounded-2xl px-4 py-3 shadow-lift flex items-center gap-3 floaty-slow">
+              <span class="grid place-items-center w-10 h-10 rounded-xl bg-gradient-to-br from-mint to-sagesoft text-xl leading-none">⭐</span>
+              <div class="text-sm leading-tight">
+                <p class="font-600 text-forest">4.9 rating</p>
+                <p class="text-muted">1,200+ reviews</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- ABOUT (no harsh divider — flows straight out of the hero)      -->
+    <!-- ============================================================= -->
+    <section id="about" class="relative py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-5 reveal">
+          <!-- glassy green composition -->
+          <div class="relative rounded-4xl overflow-hidden shadow-soft aspect-square bg-gradient-to-br from-pine via-moss to-euca">
+            <div class="absolute -top-10 -right-10 w-52 h-52 rounded-full bg-white/15 blur-2xl"></div>
+            <div class="absolute -bottom-12 -left-8 w-56 h-56 rounded-full bg-jade/35 blur-2xl"></div>
+            <div class="absolute inset-0 grid place-items-center"><div class="w-3/4 h-3/4 rounded-full border border-white/15"></div></div>
+            <div class="absolute inset-0 grid place-items-center"><div class="w-1/2 h-1/2 rounded-full border border-white/20"></div></div>
+            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent"></div>
+            <div class="absolute inset-0 grid place-items-center p-8 sm:p-10 text-center">
+              <div>
+                <p class="font-serif text-warm text-xl sm:text-2xl leading-relaxed">“I opened Verdure because I wanted a dentist I’d actually send my own family to.”</p>
+                <div class="hairline w-20 mx-auto my-5"></div>
+                <p class="text-warm/85 text-sm">Dr. Elena Whitfield — Founder</p>
+              </div>
+            </div>
+            <!-- floating glass chip -->
+            <div class="absolute left-5 bottom-5 glass rounded-2xl px-4 py-2.5 shadow-lift floaty">
+              <p class="font-serif text-lg text-forest leading-none">Est. 2008</p>
+              <p class="text-xs text-muted mt-1">Caring for Midtown</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 reveal reveal-d1">
+          <span class="eyebrow">Why patients stay</span>
+          <h2 class="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl text-forest leading-tight balance">We do dentistry the slow way.</h2>
+          <p class="mt-6 text-lg text-muted leading-relaxed max-w-2xl">
+            Most people have a dentist-chair story they’d rather forget — that’s pretty much who we built Verdure for. We start by talking: what’s put you off before, what’s actually bothering you, and what you’re happy to leave alone for now.
+          </p>
+          <p class="mt-4 text-lg text-muted leading-relaxed max-w-2xl">
+            The tech behind the scenes is genuinely good — digital scans instead of gooey molds, low-radiation imaging, treatments that touch as little healthy tooth as possible. It just happens to sit inside a room that feels more like a studio than a clinic.
+          </p>
+
+          <ul class="mt-9 grid sm:grid-cols-2 gap-4">
+            <li class="group card-lux glass rounded-3xl p-5 flex items-start gap-4 shadow-glass reveal reveal-d1">
+              <span class="icon-badge grid place-items-center w-11 h-11 rounded-2xl bg-gradient-to-br from-mint to-sagesoft text-2xl leading-none shrink-0">⏳</span>
+              <div><p class="font-600 text-forest">No rushing</p><p class="text-sm text-muted mt-1">Real 45-minute visits, not 15.</p></div>
+            </li>
+            <li class="group card-lux glass rounded-3xl p-5 flex items-start gap-4 shadow-glass reveal reveal-d2">
+              <span class="icon-badge grid place-items-center w-11 h-11 rounded-2xl bg-gradient-to-br from-mint to-sagesoft text-2xl leading-none shrink-0">🔬</span>
+              <div><p class="font-600 text-forest">Modern kit</p><p class="text-sm text-muted mt-1">Digital scans, no gooey molds.</p></div>
+            </li>
+            <li class="group card-lux glass rounded-3xl p-5 flex items-start gap-4 shadow-glass reveal reveal-d3">
+              <span class="icon-badge grid place-items-center w-11 h-11 rounded-2xl bg-gradient-to-br from-mint to-sagesoft text-2xl leading-none shrink-0">🤝</span>
+              <div><p class="font-600 text-forest">Straight answers</p><p class="text-sm text-muted mt-1">Clear costs, zero upselling.</p></div>
+            </li>
+            <li class="group card-lux glass rounded-3xl p-5 flex items-start gap-4 shadow-glass reveal reveal-d4">
+              <span class="icon-badge grid place-items-center w-11 h-11 rounded-2xl bg-gradient-to-br from-mint to-sagesoft text-2xl leading-none shrink-0">😌</span>
+              <div><p class="font-600 text-forest">Easy on nerves</p><p class="text-sm text-muted mt-1">We’re genuinely good with nervous patients.</p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- SERVICES                                                       -->
+    <!-- ============================================================= -->
+    <section id="services" class="relative py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="glass-panel rounded-[2.75rem] p-7 sm:p-12 lg:p-16">
+          <div class="max-w-2xl mx-auto text-center reveal">
+            <span class="eyebrow">What we do</span>
+            <h2 class="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl text-forest leading-tight balance">Everything your smile needs, under one roof</h2>
+            <p class="mt-5 text-lg text-muted">From six-month check-ups to full-mouth work — all in one place, all at your pace.</p>
+          </div>
+
+          <div id="servicesGrid" class="mt-12 sm:mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- DOCTORS (rendered from LocalStorage, editable via admin)       -->
+    <!-- ============================================================= -->
+    <section id="doctors" class="relative py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 reveal">
+          <div class="max-w-2xl">
+            <span class="eyebrow">Meet the team</span>
+            <h2 class="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl text-forest leading-tight balance">The people you’ll actually see</h2>
+          </div>
+          <p class="text-muted md:max-w-xs">A small, familiar team — you’ll get to know your dentist and hygienist by name, not by rotation.</p>
+        </div>
+
+        <div id="doctorsGrid" class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- TESTIMONIALS                                                   -->
+    <!-- ============================================================= -->
+    <section id="reviews" class="relative py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="glass-panel rounded-[2.75rem] p-7 sm:p-12 lg:p-16">
+          <div class="max-w-2xl mx-auto text-center reveal">
+            <span class="eyebrow">Patient stories</span>
+            <h2 class="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl text-forest leading-tight balance">Loved by New Yorkers</h2>
+            <p class="mt-5 text-lg text-muted">Pulled straight from our Google reviews — copied here word for word.</p>
+            <div class="mt-6 inline-flex items-center gap-2.5 glass rounded-full px-5 py-2.5 shadow-glass">
+              <svg viewBox="0 0 48 48" class="w-5 h-5" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+              <span class="font-600 text-forest">4.9</span>
+              <span class="flex gap-0.5 text-gold">
+                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7Z"/></svg><svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7Z"/></svg><svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7Z"/></svg><svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7Z"/></svg><svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7Z"/></svg>
+              </span>
+              <span class="text-sm text-muted">· 1,200+ Google reviews</span>
+            </div>
+          </div>
+
+          <div id="reviewsGrid" class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- CONTACT                                                        -->
+    <!-- ============================================================= -->
+    <section id="contact" class="relative py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-12">
+        <!-- Info + hours + map -->
+        <div class="lg:col-span-6 reveal">
+          <span class="eyebrow">Visit us</span>
+          <h2 class="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl text-forest leading-tight balance">Come see the difference</h2>
+          <p class="mt-5 text-lg text-muted max-w-lg">Conveniently located in the heart of Midtown, moments from Grand Central. Ready when you are.</p>
+
+          <div class="mt-8 grid sm:grid-cols-2 gap-4">
+            <a href="https://maps.google.com/?q=88+Elmwood+Terrace+New+York+NY+10016" target="_blank" rel="noopener" class="group card-lux glass rounded-3xl p-5 shadow-glass flex items-start gap-4 hover:shadow-lift">
+              <span class="icon-badge grid place-items-center w-11 h-11 rounded-2xl bg-gradient-to-br from-mint to-sagesoft text-pine shrink-0"><svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <div><p class="font-600 text-forest">Address</p><p class="text-sm text-muted mt-1">88 Elmwood Terrace, Suite 400<br/>New York, NY 10016</p></div>
+            </a>
+            <a href="tel:+10000000000" class="group card-lux glass rounded-3xl p-5 shadow-glass flex items-start gap-4 hover:shadow-lift">
+              <span class="icon-badge grid place-items-center w-11 h-11 rounded-2xl bg-gradient-to-br from-mint to-sagesoft text-pine shrink-0"><svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+              <div><p class="font-600 text-forest">Phone</p><p class="text-sm text-muted mt-1">(000) 000-0000</p></div>
+            </a>
+            <a href="mailto:hello@greendentalny.com" class="group card-lux glass rounded-3xl p-5 shadow-glass flex items-start gap-4 hover:shadow-lift">
+              <span class="icon-badge grid place-items-center w-11 h-11 rounded-2xl bg-gradient-to-br from-mint to-sagesoft text-pine shrink-0"><svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+              <div><p class="font-600 text-forest">Email</p><p class="text-sm text-muted mt-1 break-all">hello@greendentalny.com</p></div>
+            </a>
+            <a href="https://instagram.com/greendentalny" target="_blank" rel="noopener" class="group card-lux glass rounded-3xl p-5 shadow-glass flex items-start gap-4 hover:shadow-lift">
+              <span class="icon-badge grid place-items-center w-11 h-11 rounded-2xl bg-gradient-to-br from-mint to-sagesoft text-pine shrink-0"><svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></span>
+              <div><p class="font-600 text-forest">Instagram</p><p class="text-sm text-muted mt-1">@greendentalny</p></div>
+            </a>
+          </div>
+
+          <!-- Working hours -->
+          <div class="mt-6 glass rounded-3xl p-6 shadow-glass">
+            <div class="flex items-center gap-2 text-forest font-600"><svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Working Hours</div>
+            <dl class="mt-4 space-y-2 text-[15px]">
+              <div class="flex justify-between"><dt class="text-muted">Mon – Fri</dt><dd class="text-ink font-500">8:00 AM – 6:00 PM</dd></div>
+              <div class="flex justify-between"><dt class="text-muted">Saturday</dt><dd class="text-ink font-500">9:00 AM – 2:00 PM</dd></div>
+              <div class="flex justify-between"><dt class="text-muted">Sunday</dt><dd class="text-euca font-500">Closed</dd></div>
+            </dl>
+          </div>
+
+        </div>
+
+        <!-- Consultation form (inline mirror of the modal) -->
+        <div class="lg:col-span-6 reveal reveal-d1">
+          <div class="glass rounded-4xl p-7 sm:p-9 shadow-soft">
+            <h3 class="font-serif text-2xl sm:text-3xl text-forest">Request a consultation</h3>
+            <p class="text-muted mt-2">Tell us a little about you and we’ll reach out within one business day.</p>
+            <form class="consult-form mt-7 space-y-5" novalidate>
+              <div>
+                <label for="c_name" class="block text-sm font-500 text-forest mb-1.5">Full Name<span class="text-euca">*</span></label>
+                <input id="c_name" name="name" type="text" required autocomplete="name" placeholder="Jane Cooper"
+                  class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 text-ink placeholder-muted/60 focus:border-euca focus:bg-white outline-none transition-colors" />
+              </div>
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="c_phone" class="block text-sm font-500 text-forest mb-1.5">Phone Number<span class="text-euca">*</span></label>
+                  <input id="c_phone" name="phone" type="tel" required autocomplete="tel" placeholder="(212) 555-0123"
+                    class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 text-ink placeholder-muted/60 focus:border-euca focus:bg-white outline-none transition-colors" />
+                </div>
+                <div>
+                  <label for="c_email" class="block text-sm font-500 text-forest mb-1.5">Email<span class="text-euca">*</span></label>
+                  <input id="c_email" name="email" type="email" required autocomplete="email" placeholder="jane@email.com"
+                    class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 text-ink placeholder-muted/60 focus:border-euca focus:bg-white outline-none transition-colors" />
+                </div>
+              </div>
+              <div>
+                <label for="c_msg" class="block text-sm font-500 text-forest mb-1.5">Message <span class="text-muted font-400">(optional)</span></label>
+                <textarea id="c_msg" name="message" rows="4" placeholder="What would you like help with?"
+                  class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 text-ink placeholder-muted/60 focus:border-euca focus:bg-white outline-none transition-colors resize-none"></textarea>
+              </div>
+              <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-forest text-warm px-6 py-3.5 rounded-2xl font-500 shadow-soft hover:bg-moss hover:shadow-lift transition-all duration-300 cursor-pointer">
+                Send Request
+                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <p class="text-xs text-muted text-center">By submitting, you agree to be contacted about your inquiry. We never share your information.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Large Google Maps panel — matted glass frame, real embed, lazy-loaded -->
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 mt-14 lg:mt-20">
+        <div class="group relative reveal glass rounded-[2.5rem] p-2 sm:p-2.5 shadow-soft">
+          <div class="relative rounded-[2rem] overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-sagesoft to-mint"></div>
+            <iframe id="mapFrame"
+              title="Map to Verdure Dental — 88 Elmwood Terrace, New York, NY 10016"
+              data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.7!2d-73.98!3d40.7501!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVerdure+Dental!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+              class="relative w-full h-[420px] sm:h-[520px] lg:h-[580px] border-0 grayscale-[0.15] contrast-[1.03] group-hover:grayscale-0 transition-all duration-700"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <!-- floating address card -->
+            <div class="pointer-events-none absolute inset-x-0 bottom-0 p-5 sm:p-7 flex justify-center sm:justify-start">
+              <div class="pointer-events-auto glass rounded-3xl px-6 py-5 shadow-lift max-w-sm">
+                <p class="font-serif text-xl text-forest">Verdure Dental</p>
+                <p class="text-sm text-muted mt-1">88 Elmwood Terrace, Suite 400<br/>New York, NY 10016</p>
+                <a href="https://maps.google.com/?q=88+Elmwood+Terrace+New+York+NY+10016" target="_blank" rel="noopener"
+                   class="btn-lux mt-4 inline-flex items-center gap-2 bg-gradient-to-br from-moss to-forest text-warm px-5 py-2.5 rounded-full text-sm font-500 shadow-soft hover:shadow-glow transition-shadow">
+                  Get Directions
+                  <svg viewBox="0 0 24 24" class="arrow w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- FOOTER                                                         -->
+    <!-- ============================================================= -->
+    <footer class="relative mt-8">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="glass-forest rounded-t-5xl text-warm/90 px-7 sm:px-12 py-12">
+          <div class="grid md:grid-cols-12 gap-10">
+            <div class="md:col-span-5">
+              <div class="flex items-center gap-3">
+                <span class="grid place-items-center w-11 h-11 rounded-2xl bg-warm/15 border border-warm/20">
+                  <span class="font-serif text-2xl leading-none translate-y-[1px] text-warm select-none">V</span>
+                </span>
+                <div><p class="font-serif text-xl">Verdure Dental</p><p class="text-xs uppercase tracking-widest2 text-warm/60">Manhattan, New York</p></div>
+              </div>
+              <p class="mt-5 text-warm/70 max-w-sm leading-relaxed">A small Midtown practice doing dentistry the unhurried way. We’d genuinely love to meet you.</p>
+            </div>
+            <div class="md:col-span-3">
+              <p class="text-warm/50 text-sm uppercase tracking-widest2">Explore</p>
+              <ul class="mt-4 space-y-2.5 text-warm/80">
+                <li><a href="#about" class="hover:text-warm transition-colors">About</a></li>
+                <li><a href="#services" class="hover:text-warm transition-colors">Services</a></li>
+                <li><a href="#doctors" class="hover:text-warm transition-colors">Doctors</a></li>
+                <li><a href="#reviews" class="hover:text-warm transition-colors">Reviews</a></li>
+              </ul>
+            </div>
+            <div class="md:col-span-4">
+              <p class="text-warm/50 text-sm uppercase tracking-widest2">Get in touch</p>
+              <ul class="mt-4 space-y-2.5 text-warm/80">
+                <li>88 Elmwood Terrace, Suite 400</li>
+                <li>New York, NY 10016</li>
+                <li><a href="tel:+10000000000" class="hover:text-warm transition-colors">(000) 000-0000</a></li>
+                <li><a href="mailto:hello@greendentalny.com" class="hover:text-warm transition-colors">hello@greendentalny.com</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-10 pt-6 border-t border-warm/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-warm/60">
+            <p>© <span id="year"></span> Verdure Dental. All rights reserved.</p>
+            <p class="flex items-center gap-1">Crafted with care in New York City
+              <!-- hidden admin hotspot: the period is an invisible click target -->
+              <button id="adminHotspot" aria-label="." class="w-4 h-4 ml-0.5 opacity-0 cursor-default" tabindex="-1"></button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ============================================================= -->
+  <!-- FLOATING ACTION BUTTONS                                        -->
+  <!-- ============================================================= -->
+  <div class="fab-stack fixed z-40 right-4 sm:right-6 bottom-4 sm:bottom-6 flex flex-col gap-3">
+    <a href="https://wa.me/00000000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+       class="group grid place-items-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lift hover:scale-110 active:scale-95 transition-transform duration-300">
+      <svg viewBox="0 0 24 24" class="w-7 h-7 transition-transform duration-300 group-hover:rotate-[-6deg]" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.8.9.8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.6-.7c.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg>
+    </a>
+    <a href="tel:+10000000000" aria-label="Call the clinic"
+       class="fab-pulse group grid place-items-center w-14 h-14 rounded-full bg-gradient-to-br from-moss to-forest text-warm shadow-lift hover:scale-110 active:scale-95 transition-transform duration-300">
+      <svg viewBox="0 0 24 24" class="w-6 h-6 transition-transform duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>
+    </a>
+  </div>
+
+  <!-- Toast region -->
+  <div id="toastRegion" class="fixed z-[70] left-1/2 -translate-x-1/2 bottom-6 flex flex-col items-center gap-2 pointer-events-none" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ============================================================= -->
+  <!-- BOOKING MODAL                                                  -->
+  <!-- ============================================================= -->
+  <div id="bookModal" class="fixed inset-0 z-[80] hidden">
+    <div class="absolute inset-0 bg-forest/40 backdrop-blur-sm" data-close-book></div>
+    <div class="relative min-h-full grid place-items-center p-4">
+      <div class="modal-card glass rounded-4xl shadow-lift w-full max-w-lg p-7 sm:p-9 max-h-[92vh] overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="bookTitle">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h3 id="bookTitle" class="font-serif text-2xl sm:text-3xl text-forest">Book a consultation</h3>
+            <p class="text-muted mt-2">We’ll confirm your preferred time within one business day.</p>
+          </div>
+          <button data-close-book aria-label="Close" class="grid place-items-center w-10 h-10 rounded-full glass-soft text-forest hover:bg-white/70 transition-colors cursor-pointer shrink-0">
+            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <form class="consult-form mt-7 space-y-5" novalidate>
+          <div>
+            <label for="m_name" class="block text-sm font-500 text-forest mb-1.5">Full Name<span class="text-euca">*</span></label>
+            <input id="m_name" name="name" type="text" required autocomplete="name" placeholder="Jane Cooper"
+              class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 text-ink placeholder-muted/60 focus:border-euca focus:bg-white outline-none transition-colors" />
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="m_phone" class="block text-sm font-500 text-forest mb-1.5">Phone Number<span class="text-euca">*</span></label>
+              <input id="m_phone" name="phone" type="tel" required autocomplete="tel" placeholder="(212) 555-0123"
+                class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 text-ink placeholder-muted/60 focus:border-euca focus:bg-white outline-none transition-colors" />
+            </div>
+            <div>
+              <label for="m_email" class="block text-sm font-500 text-forest mb-1.5">Email<span class="text-euca">*</span></label>
+              <input id="m_email" name="email" type="email" required autocomplete="email" placeholder="jane@email.com"
+                class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 text-ink placeholder-muted/60 focus:border-euca focus:bg-white outline-none transition-colors" />
+            </div>
+          </div>
+          <div>
+            <label for="m_msg" class="block text-sm font-500 text-forest mb-1.5">Message <span class="text-muted font-400">(optional)</span></label>
+            <textarea id="m_msg" name="message" rows="3" placeholder="What would you like help with?"
+              class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 text-ink placeholder-muted/60 focus:border-euca focus:bg-white outline-none transition-colors resize-none"></textarea>
+          </div>
+          <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-forest text-warm px-6 py-3.5 rounded-2xl font-500 shadow-soft hover:bg-moss hover:shadow-lift transition-all duration-300 cursor-pointer">
+            Confirm Request
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- ADMIN LOGIN MODAL                                              -->
+  <!-- ============================================================= -->
+  <div id="loginModal" class="fixed inset-0 z-[85] hidden">
+    <div class="absolute inset-0 bg-forest/50 backdrop-blur-sm" data-close-login></div>
+    <div class="relative min-h-full grid place-items-center p-4">
+      <div class="modal-card glass rounded-4xl shadow-lift w-full max-w-sm p-8" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="grid place-items-center w-11 h-11 rounded-2xl bg-forest text-warm"><svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+            <h3 id="loginTitle" class="font-serif text-xl text-forest">Admin Access</h3>
+          </div>
+          <button data-close-login aria-label="Close" class="grid place-items-center w-9 h-9 rounded-full glass-soft text-forest hover:bg-white/70 transition-colors cursor-pointer">
+            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <form id="loginForm" class="mt-6 space-y-4" novalidate>
+          <div>
+            <label for="admin_pw" class="block text-sm font-500 text-forest mb-1.5">Password</label>
+            <input id="admin_pw" type="password" required autocomplete="current-password" placeholder="••••••••"
+              class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 text-ink placeholder-muted/60 focus:border-euca focus:bg-white outline-none transition-colors" />
+            <p id="loginError" class="hidden mt-2 text-sm text-red-600">Incorrect password. Please try again.</p>
+          </div>
+          <button type="submit" class="w-full bg-forest text-warm px-6 py-3 rounded-2xl font-500 shadow-soft hover:bg-moss transition-colors cursor-pointer">Unlock Dashboard</button>
+          <p class="text-xs text-muted text-center">Tip: type <span class="font-mono bg-white/60 px-1.5 py-0.5 rounded">/auth</span> anywhere to open this panel.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- ADMIN DASHBOARD (full-screen overlay)                          -->
+  <!-- ============================================================= -->
+  <div id="dashboard" class="fixed inset-0 z-[90] hidden bg-ivory">
+    <div class="h-full flex flex-col">
+      <!-- Dashboard header -->
+      <header class="glass border-b border-white/50 px-4 sm:px-8 py-4 flex items-center justify-between gap-4 shrink-0">
+        <div class="flex items-center gap-3">
+          <span class="grid place-items-center w-10 h-10 rounded-2xl bg-forest text-warm"><svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg></span>
+          <div><p class="font-serif text-lg text-forest leading-tight">Admin Dashboard</p><p class="text-xs text-muted">Verdure Dental · Control Center</p></div>
+        </div>
+        <button id="logoutBtn" class="inline-flex items-center gap-2 glass-soft text-forest px-4 py-2.5 rounded-full hover:bg-white/70 transition-colors cursor-pointer text-sm font-500">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+          Sign out
+        </button>
+      </header>
+
+      <!-- Tabs -->
+      <div class="px-4 sm:px-8 pt-5 shrink-0">
+        <div class="inline-flex glass-soft rounded-full p-1 gap-1 text-sm">
+          <button data-tab="requests" class="tab-btn px-4 sm:px-5 py-2.5 rounded-full font-500 transition-colors cursor-pointer">Requests</button>
+          <button data-tab="doctors"  class="tab-btn px-4 sm:px-5 py-2.5 rounded-full font-500 transition-colors cursor-pointer">Doctors</button>
+          <button data-tab="password" class="tab-btn px-4 sm:px-5 py-2.5 rounded-full font-500 transition-colors cursor-pointer">Password</button>
+        </div>
+      </div>
+
+      <!-- Tab content -->
+      <div class="flex-1 overflow-y-auto px-4 sm:px-8 py-6">
+        <!-- REQUESTS -->
+        <section data-panel="requests" class="max-w-6xl mx-auto">
+          <div class="flex items-center justify-between gap-4 mb-5">
+            <div><h2 class="font-serif text-2xl text-forest">Consultation Requests</h2><p class="text-muted text-sm mt-1"><span id="reqCount">0</span> total submissions</p></div>
+            <button id="clearReqBtn" class="text-sm text-red-600 hover:text-red-700 font-500 cursor-pointer transition-colors">Clear all</button>
+          </div>
+          <div class="glass rounded-3xl shadow-glass overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-sm">
+                <thead class="bg-forest/90 text-warm/90 text-xs uppercase tracking-wider">
+                  <tr>
+                    <th class="px-5 py-4 font-500">Name</th>
+                    <th class="px-5 py-4 font-500">Phone</th>
+                    <th class="px-5 py-4 font-500">Email</th>
+                    <th class="px-5 py-4 font-500">Message</th>
+                    <th class="px-5 py-4 font-500 whitespace-nowrap">Date</th>
+                    <th class="px-5 py-4 font-500 text-right">·</th>
+                  </tr>
+                </thead>
+                <tbody id="reqTableBody" class="divide-y divide-forest/10"></tbody>
+              </table>
+            </div>
+            <div id="reqEmpty" class="hidden p-12 text-center text-muted">
+              <svg viewBox="0 0 24 24" class="w-10 h-10 mx-auto text-sage" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.2L4 17.2Z"/></svg>
+              <p class="mt-3">No consultation requests yet.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- DOCTORS -->
+        <section data-panel="doctors" class="max-w-6xl mx-auto hidden">
+          <div class="grid lg:grid-cols-12 gap-6">
+            <!-- Form -->
+            <div class="lg:col-span-5">
+              <div class="glass rounded-3xl shadow-glass p-6 sticky top-2">
+                <h2 class="font-serif text-2xl text-forest" id="docFormTitle">Add a doctor</h2>
+                <form id="doctorForm" class="mt-5 space-y-4" novalidate>
+                  <input type="hidden" id="doc_id" />
+                  <!-- image upload with preview -->
+                  <div>
+                    <label class="block text-sm font-500 text-forest mb-1.5">Photo</label>
+                    <div class="flex items-center gap-4">
+                      <div class="relative w-24 h-28 rounded-2xl overflow-hidden bg-sagesoft/50 border border-white/60 shrink-0 grid place-items-center">
+                        <img id="doc_preview" alt="" class="hidden absolute inset-0 w-full h-full object-cover" />
+                        <svg id="doc_preview_ph" viewBox="0 0 24 24" class="w-9 h-9 text-forest/30" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>
+                      </div>
+                      <div class="flex-1">
+                        <label for="doc_photo" class="inline-flex items-center gap-2 glass-soft text-forest px-4 py-2.5 rounded-xl cursor-pointer hover:bg-white/70 transition-colors text-sm font-500">
+                          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+                          Upload photo
+                        </label>
+                        <input id="doc_photo" type="file" accept="image/*" class="hidden" />
+                        <button type="button" id="doc_photo_clear" class="hidden ml-2 text-sm text-red-600 hover:underline cursor-pointer">Remove</button>
+                        <p class="text-xs text-muted mt-2">JPG or PNG. Auto-optimized for fast loading.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <label for="doc_name" class="block text-sm font-500 text-forest mb-1.5">Full Name<span class="text-euca">*</span></label>
+                    <input id="doc_name" type="text" required placeholder="Dr. Elena Whitfield"
+                      class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 text-ink placeholder-muted/60 focus:border-euca focus:bg-white outline-none transition-colors" />
+                  </div>
+                  <div>
+                    <label for="doc_spec" class="block text-sm font-500 text-forest mb-1.5">Specialty<span class="text-euca">*</span></label>
+                    <input id="doc_spec" type="text" required placeholder="Cosmetic & Restorative Dentistry"
+                      class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 text-ink placeholder-muted/60 focus:border-euca focus:bg-white outline-none transition-colors" />
+                  </div>
+                  <div class="flex gap-3 pt-1">
+                    <button type="submit" id="doc_submit" class="flex-1 bg-forest text-warm px-5 py-3 rounded-2xl font-500 shadow-soft hover:bg-moss transition-colors cursor-pointer">Add Doctor</button>
+                    <button type="button" id="doc_reset" class="hidden px-5 py-3 rounded-2xl glass-soft text-forest font-500 hover:bg-white/70 transition-colors cursor-pointer">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- List -->
+            <div class="lg:col-span-7">
+              <h2 class="font-serif text-2xl text-forest mb-5">Current team <span class="text-muted text-base">(<span id="docCount">0</span>)</span></h2>
+              <div id="adminDoctorList" class="grid sm:grid-cols-2 gap-4"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PASSWORD -->
+        <section data-panel="password" class="max-w-xl mx-auto hidden">
+          <div class="glass rounded-3xl shadow-glass p-6 sm:p-8">
+            <h2 class="font-serif text-2xl text-forest">Change password</h2>
+            <p class="text-muted text-sm mt-1">Update the admin password used to access this dashboard.</p>
+            <form id="pwChangeForm" class="mt-6 space-y-4" novalidate>
+              <div>
+                <label for="pw_current" class="block text-sm font-500 text-forest mb-1.5">Current password</label>
+                <input id="pw_current" type="password" required autocomplete="current-password"
+                  class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 focus:border-euca focus:bg-white outline-none transition-colors" />
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="pw_new" class="block text-sm font-500 text-forest mb-1.5">New password</label>
+                  <input id="pw_new" type="password" required autocomplete="new-password"
+                    class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 focus:border-euca focus:bg-white outline-none transition-colors" />
+                </div>
+                <div>
+                  <label for="pw_confirm" class="block text-sm font-500 text-forest mb-1.5">Confirm new</label>
+                  <input id="pw_confirm" type="password" required autocomplete="new-password"
+                    class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 focus:border-euca focus:bg-white outline-none transition-colors" />
+                </div>
+              </div>
+              <button type="submit" class="w-full bg-forest text-warm px-5 py-3 rounded-2xl font-500 shadow-soft hover:bg-moss transition-colors cursor-pointer">Update Password</button>
+            </form>
+
+            <div class="hairline my-8"></div>
+
+            <!-- Simulated email verification reset flow -->
+            <h3 class="font-serif text-xl text-forest">Forgot password?</h3>
+            <p class="text-muted text-sm mt-1">Reset it through a verification code sent to the clinic email.</p>
+
+            <!-- Step 1: send code -->
+            <div id="resetStep1" class="mt-5 space-y-4">
+              <div>
+                <label for="reset_email" class="block text-sm font-500 text-forest mb-1.5">Clinic email</label>
+                <input id="reset_email" type="email" value="hello@greendentalny.com"
+                  class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 focus:border-euca focus:bg-white outline-none transition-colors" />
+              </div>
+              <button id="sendCodeBtn" type="button" class="w-full glass-soft text-forest px-5 py-3 rounded-2xl font-500 hover:bg-white/70 transition-colors cursor-pointer">Send verification code</button>
+            </div>
+
+            <!-- Step 2: verify + set new -->
+            <div id="resetStep2" class="mt-5 space-y-4 hidden">
+              <!-- simulated inbox notice -->
+              <div class="rounded-2xl bg-sage/25 border border-sage/50 p-4 text-sm">
+                <p class="flex items-center gap-2 text-forest font-500"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> Simulated inbox</p>
+                <p class="text-muted mt-1.5">A 6-digit code was “sent” to <span id="reset_email_echo" class="font-500 text-ink"></span>. For this demo it is:</p>
+                <p class="mt-2 font-mono text-2xl tracking-[0.3em] text-forest text-center bg-white/60 rounded-xl py-2" id="demoCode">000000</p>
+              </div>
+              <div>
+                <label for="reset_code" class="block text-sm font-500 text-forest mb-1.5">Enter code</label>
+                <input id="reset_code" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit code"
+                  class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 tracking-[0.3em] text-center focus:border-euca focus:bg-white outline-none transition-colors" />
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="reset_new" class="block text-sm font-500 text-forest mb-1.5">New password</label>
+                  <input id="reset_new" type="password" autocomplete="new-password"
+                    class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 focus:border-euca focus:bg-white outline-none transition-colors" />
+                </div>
+                <div>
+                  <label for="reset_confirm" class="block text-sm font-500 text-forest mb-1.5">Confirm new</label>
+                  <input id="reset_confirm" type="password" autocomplete="new-password"
+                    class="w-full rounded-2xl bg-white/70 border border-white/70 px-4 py-3 focus:border-euca focus:bg-white outline-none transition-colors" />
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <button id="verifyResetBtn" type="button" class="flex-1 bg-forest text-warm px-5 py-3 rounded-2xl font-500 shadow-soft hover:bg-moss transition-colors cursor-pointer">Verify & Reset</button>
+                <button id="cancelResetBtn" type="button" class="px-5 py-3 rounded-2xl glass-soft text-forest font-500 hover:bg-white/70 transition-colors cursor-pointer">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- JAVASCRIPT (vanilla, modular)                                  -->
+  <!-- ============================================================= -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* ------------------------------------------------------------- */
+    /* Storage layer                                                  */
+    /* ------------------------------------------------------------- */
+    const KEYS = {
+      requests: 'vd_requests',
+      doctors:  'vd_doctors',
+      pw:       'vd_admin_pw',
+      seeded:   'vd_seeded'
+    };
+
+    const store = {
+      get(key, fallback) {
+        try { const v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); }
+        catch (_) { return fallback; }
+      },
+      set(key, val) {
+        try { localStorage.setItem(key, JSON.stringify(val)); return true; }
+        catch (e) { console.warn('Storage failed', e); return false; }
+      }
+    };
+
+    /* ------------------------------------------------------------- */
+    /* Seed defaults (first visit only)                               */
+    /* ------------------------------------------------------------- */
+    const DEFAULT_DOCTORS = [
+      { id: 'd1', name: 'Dr. Elena Whitfield', specialty: 'Cosmetic & Restorative Dentistry', photo: '' },
+      { id: 'd2', name: 'Dr. Marcus Reed',     specialty: 'Implants & Oral Surgery',          photo: '' },
+      { id: 'd3', name: 'Dr. Naomi Park',       specialty: 'Orthodontics & Invisalign',        photo: '' },
+      { id: 'd4', name: 'Dr. Julian Alvarez',   specialty: 'Pediatric Dentistry',              photo: '' }
+    ];
+
+    if (!store.get(KEYS.seeded, false)) {
+      store.set(KEYS.doctors, DEFAULT_DOCTORS);
+      store.set(KEYS.pw, 'admin');           // default admin password
+      store.set(KEYS.requests, []);
+      store.set(KEYS.seeded, true);
+    }
+    // Safety net: ensure a password always exists
+    if (!store.get(KEYS.pw, null)) store.set(KEYS.pw, 'admin');
+
+    /* ------------------------------------------------------------- */
+    /* Small DOM helpers                                              */
+    /* ------------------------------------------------------------- */
+    const $  = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => (
+      { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]
+    ));
+
+    /* Toast notifications */
+    function toast(msg, type = 'success') {
+      const region = $('#toastRegion');
+      const el = document.createElement('div');
+      const tone = type === 'error'
+        ? 'bg-red-600 text-white'
+        : 'bg-forest text-warm';
+      el.className = `toast pointer-events-auto ${tone} px-5 py-3 rounded-full shadow-lift text-sm font-500 flex items-center gap-2`;
+      el.innerHTML = (type === 'error'
+        ? '<svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v5M12 16h.01"/><circle cx="12" cy="12" r="9"/></svg>'
+        : '<svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
+      ) + `<span>${esc(msg)}</span>`;
+      region.appendChild(el);
+      setTimeout(() => { el.style.transition = 'opacity .4s, transform .4s'; el.style.opacity = '0'; el.style.transform = 'translateY(10px)'; }, 3000);
+      setTimeout(() => el.remove(), 3450);
+    }
+
+    /* ------------------------------------------------------------- */
+    /* SERVICES data + render                                         */
+    /* ------------------------------------------------------------- */
+    // Each service uses an emoji glyph (per request) instead of a drawn icon.
+    const SERVICES = [
+      { t: 'General Dentistry',     e: '🦷', d: 'Thorough exams, cleanings, and honest guidance to keep your smile healthy for life.' },
+      { t: 'Cosmetic Dentistry',    e: '✨', d: 'Veneers, bonding, and smile design tailored to your features and goals.' },
+      { t: 'Dental Implants',       e: '🔩', d: 'Permanent, natural-looking tooth replacement using 3D-guided precision.' },
+      { t: 'Invisalign',            e: '😁', d: 'Clear, removable aligners that straighten discreetly on your schedule.' },
+      { t: 'Teeth Whitening',       e: '🌟', d: 'Professional, enamel-safe brightening for a naturally radiant smile.' },
+      { t: 'Pediatric Dentistry',   e: '🧸', d: 'Warm, playful care that helps children build lifelong healthy habits.' },
+      { t: 'Emergency Dental Care', e: '🚑', d: 'Same-day relief for pain, breaks, and urgent concerns — we’re here fast.' },
+      { t: 'Oral Surgery',          e: '🩺', d: 'Expert extractions and surgical procedures with a gentle, calming touch.' },
+      { t: 'Preventive Care',       e: '🛡️', d: 'Sealants, fluoride, and proactive planning to stop problems before they start.' }
+    ];
+
+    function renderServices() {
+      $('#servicesGrid').innerHTML = SERVICES.map((s, idx) => `
+        <article class="svc-card group card-lux glass rounded-4xl p-7 shadow-glass hover:shadow-lift cursor-default" style="transition-delay:${idx * 70}ms">
+          <span class="grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-mint to-sagesoft group-hover:from-sagesoft group-hover:to-sage transition-colors duration-500">
+            <span class="svc-emoji text-3xl leading-none" style="animation-delay:${idx * 0.3}s">${s.e}</span>
+          </span>
+          <h3 class="mt-5 font-serif text-xl text-forest">${esc(s.t)}</h3>
+          <p class="mt-2 text-muted leading-relaxed text-[15px]">${esc(s.d)}</p>
+        </article>
+      `).join('');
+    }
+
+    /* ------------------------------------------------------------- */
+    /* TESTIMONIALS data + render                                     */
+    /* ------------------------------------------------------------- */
+    const REVIEWS = [
+      { n: 'Sarah M.',  loc: 'Upper East Side', q: 'I used to dread the dentist. The team here is so calm and patient that I actually look forward to my cleanings now. My veneers look completely natural.' },
+      { n: 'David R.',  loc: 'Chelsea',         q: 'Booked an emergency appointment for a cracked molar and was seen the same afternoon. Professional, painless, and genuinely kind. Cannot recommend them enough.' },
+      { n: 'Emily T.',  loc: 'Tribeca',         q: 'My Invisalign results are incredible and the whole process was explained clearly at every step. The office feels more like a spa than a clinic.' },
+      { n: 'Michael A.',loc: 'Midtown',         q: 'Dr. Reed placed two implants and I felt informed and comfortable the entire time. Six months later they feel like my own teeth. Worth every visit.' },
+      { n: 'Jessica W.',loc: 'Williamsburg',    q: 'They are amazing with my kids. My daughter used to cry at check-ups and now she asks when we’re going back. Warm, gentle, and endlessly patient.' },
+      { n: 'Daniel K.', loc: 'Gramercy',        q: 'Whitening exceeded my expectations and there was zero sensitivity afterward. The attention to detail and follow-up care really set this practice apart.' }
+    ];
+
+    const stars = '<div class="flex gap-0.5 text-gold" aria-label="5 out of 5 stars">' +
+      Array(5).fill('<svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7Z"/></svg>').join('') +
+      '</div>';
+
+    function renderReviews() {
+      $('#reviewsGrid').innerHTML = REVIEWS.map((r, idx) => {
+        const initials = r.n.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+        return `
+        <figure class="reveal reveal-d${(idx % 3) + 1} card-lux glass rounded-4xl p-7 shadow-glass hover:shadow-lift flex flex-col">
+          ${stars}
+          <blockquote class="mt-4 text-ink/90 leading-relaxed flex-1">“${esc(r.q)}”</blockquote>
+          <figcaption class="mt-6 flex items-center gap-3">
+            <span class="grid place-items-center w-11 h-11 rounded-full bg-gradient-to-br from-moss to-forest text-warm font-500 text-sm shrink-0">${esc(initials)}</span>
+            <span class="min-w-0">
+              <span class="block font-600 text-forest">${esc(r.n)}</span>
+              <span class="flex items-center gap-1.5 text-sm text-muted">
+                <svg viewBox="0 0 48 48" class="w-3.5 h-3.5 shrink-0" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+                Posted on Google
+              </span>
+            </span>
+          </figcaption>
+        </figure>`;
+      }).join('');
+    }
+
+    /* ------------------------------------------------------------- */
+    /* DOCTORS render (public + admin)                                */
+    /* ------------------------------------------------------------- */
+    const avatarPlaceholder = `
+      <div class="absolute inset-0 grid place-items-center bg-gradient-to-br from-sagesoft to-sage/70">
+        <svg viewBox="0 0 24 24" class="w-14 h-14 text-forest/40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </div>`;
+
+    function getDoctors() { return store.get(KEYS.doctors, []); }
+
+    function renderDoctorsPublic() {
+      const docs = getDoctors();
+      const grid = $('#doctorsGrid');
+      if (!docs.length) {
+        grid.innerHTML = `<p class="col-span-full text-center text-muted py-8">Our team profiles are being updated. Please check back soon.</p>`;
+        return;
+      }
+      grid.innerHTML = docs.map((d, idx) => `
+        <article class="reveal reveal-d${(idx % 4) + 1} group card-lux cursor-default">
+          <div class="relative aspect-[4/5] rounded-4xl overflow-hidden shadow-glass group-hover:shadow-lift transition-shadow duration-300">
+            ${d.photo
+              ? `<img src="${esc(d.photo)}" alt="Portrait of ${esc(d.name)}, ${esc(d.specialty)}" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />`
+              : avatarPlaceholder}
+            <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-forest/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <div class="mt-4 px-1">
+            <h3 class="font-serif text-lg text-forest">${esc(d.name)}</h3>
+            <p class="text-sm text-euca font-500 mt-0.5">${esc(d.specialty)}</p>
+          </div>
+        </article>
+      `).join('');
+      revealObserve(grid);
+    }
+
+    function renderDoctorsAdmin() {
+      const docs = getDoctors();
+      $('#docCount').textContent = docs.length;
+      const list = $('#adminDoctorList');
+      if (!docs.length) {
+        list.innerHTML = `<p class="col-span-full text-muted glass rounded-2xl p-6 text-center">No doctors yet. Add your first team member.</p>`;
+        return;
+      }
+      list.innerHTML = docs.map(d => `
+        <div class="glass rounded-2xl p-4 shadow-glass flex items-center gap-4">
+          <div class="relative w-16 h-20 rounded-xl overflow-hidden shrink-0 bg-sagesoft">
+            ${d.photo
+              ? `<img src="${esc(d.photo)}" alt="${esc(d.name)}" class="absolute inset-0 w-full h-full object-cover" />`
+              : `<div class="absolute inset-0 grid place-items-center"><svg viewBox="0 0 24 24" class="w-7 h-7 text-forest/40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>`}
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="font-600 text-forest truncate">${esc(d.name)}</p>
+            <p class="text-sm text-muted truncate">${esc(d.specialty)}</p>
+            <div class="mt-2 flex gap-3 text-sm">
+              <button data-edit="${esc(d.id)}" class="text-euca hover:text-forest font-500 transition-colors cursor-pointer">Edit</button>
+              <button data-del="${esc(d.id)}" class="text-red-600 hover:text-red-700 font-500 transition-colors cursor-pointer">Delete</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ------------------------------------------------------------- */
+    /* Consultation form handling (both inline + modal share class)   */
+    /* ------------------------------------------------------------- */
+    function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    function handleConsultSubmit(form) {
+      const data = {
+        name:    form.querySelector('[name="name"]').value.trim(),
+        phone:   form.querySelector('[name="phone"]').value.trim(),
+        email:   form.querySelector('[name="email"]').value.trim(),
+        message: form.querySelector('[name="message"]').value.trim(),
+        date:    new Date().toISOString()
+      };
+      // validation
+      if (!data.name || !data.phone || !data.email) { toast('Please fill in all required fields.', 'error'); return false; }
+      if (!isEmail(data.email)) { toast('Please enter a valid email address.', 'error'); return false; }
+
+      const requests = store.get(KEYS.requests, []);
+      requests.unshift(data);
+      const ok = store.set(KEYS.requests, requests);
+      if (!ok) { toast('Could not save — storage is full.', 'error'); return false; }
+
+      form.reset();
+      toast('Thank you! We’ll be in touch within one business day.');
+      return true;
+    }
+
+    $$('.consult-form').forEach(form => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const submitBtn = form.querySelector('[type="submit"]');
+        if (submitBtn) { submitBtn.disabled = true; setTimeout(() => submitBtn.disabled = false, 600); }
+        const ok = handleConsultSubmit(form);
+        if (ok && form.closest('#bookModal')) closeBook();
+      });
+    });
+
+    /* ------------------------------------------------------------- */
+    /* Modals: booking + login + dashboard (focus + Esc + backdrop)   */
+    /* ------------------------------------------------------------- */
+    let lastFocused = null;
+    function openModal(el) {
+      lastFocused = document.activeElement;
+      el.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      const focusable = el.querySelector('input, button, textarea, a[href]');
+      if (focusable) setTimeout(() => focusable.focus(), 50);
+    }
+    function closeModal(el) {
+      el.classList.add('hidden');
+      if (!anyModalOpen()) document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+    function anyModalOpen() {
+      return ['#bookModal', '#loginModal', '#dashboard'].some(s => !$(s).classList.contains('hidden'));
+    }
+
+    // Booking modal
+    const bookModal = $('#bookModal');
+    function openBook() { openModal(bookModal); }
+    function closeBook() { closeModal(bookModal); }
+    $$('[data-open-book]').forEach(b => b.addEventListener('click', openBook));
+    $$('[data-close-book]').forEach(b => b.addEventListener('click', closeBook));
+
+    // Login modal
+    const loginModal = $('#loginModal');
+    function openLogin() {
+      // if already authenticated this session, jump straight to dashboard
+      $('#loginError').classList.add('hidden');
+      $('#admin_pw').value = '';
+      openModal(loginModal);
+    }
+    function closeLogin() { closeModal(loginModal); }
+    $$('[data-close-login]').forEach(b => b.addEventListener('click', closeLogin));
+
+    $('#adminHotspot').addEventListener('click', openLogin);
+
+    $('#loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = $('#admin_pw').value;
+      const real = store.get(KEYS.pw, 'admin');
+      if (val === real) {
+        closeLogin();
+        openDashboard();
+      } else {
+        $('#loginError').classList.remove('hidden');
+        $('#admin_pw').focus();
+        $('#admin_pw').select();
+      }
+    });
+
+    // "/auth" keyboard trigger (ignored while typing in fields)
+    let typeBuffer = '';
+    document.addEventListener('keydown', (e) => {
+      const tag = (e.target.tagName || '').toLowerCase();
+      const editing = tag === 'input' || tag === 'textarea' || e.target.isContentEditable;
+      if (editing) return;
+      if (e.key.length === 1) {
+        typeBuffer = (typeBuffer + e.key).slice(-5).toLowerCase();
+        if (typeBuffer === '/auth') { typeBuffer = ''; openLogin(); }
+      }
+    });
+
+    // Global Esc closes topmost modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (!$('#dashboard').classList.contains('hidden')) return; // dashboard has its own sign-out
+      if (!loginModal.classList.contains('hidden')) closeLogin();
+      else if (!bookModal.classList.contains('hidden')) closeBook();
+    });
+
+    /* ------------------------------------------------------------- */
+    /* DASHBOARD                                                      */
+    /* ------------------------------------------------------------- */
+    const dashboard = $('#dashboard');
+    function openDashboard() {
+      renderRequests();
+      renderDoctorsAdmin();
+      resetDoctorForm();
+      switchTab('requests');
+      openModal(dashboard);
+    }
+    function closeDashboard() { closeModal(dashboard); }
+    $('#logoutBtn').addEventListener('click', closeDashboard);
+
+    // Tabs
+    function switchTab(name) {
+      $$('.tab-btn').forEach(b => {
+        const active = b.dataset.tab === name;
+        b.classList.toggle('bg-forest', active);
+        b.classList.toggle('text-warm', active);
+        b.classList.toggle('text-forest', !active);
+        b.classList.toggle('shadow-soft', active);
+      });
+      $$('[data-panel]').forEach(p => p.classList.toggle('hidden', p.dataset.panel !== name));
+    }
+    $$('.tab-btn').forEach(b => b.addEventListener('click', () => switchTab(b.dataset.tab)));
+
+    /* ---- Requests table ---- */
+    function fmtDate(iso) {
+      const d = new Date(iso);
+      if (isNaN(d)) return '—';
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) +
+             ' · ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    }
+    function renderRequests() {
+      const reqs = store.get(KEYS.requests, []);
+      $('#reqCount').textContent = reqs.length;
+      const body = $('#reqTableBody');
+      const empty = $('#reqEmpty');
+      if (!reqs.length) { body.innerHTML = ''; empty.classList.remove('hidden'); return; }
+      empty.classList.add('hidden');
+      body.innerHTML = reqs.map((r, i) => `
+        <tr class="hover:bg-white/50 transition-colors align-top">
+          <td class="px-5 py-4 font-500 text-forest whitespace-nowrap">${esc(r.name)}</td>
+          <td class="px-5 py-4 text-muted whitespace-nowrap">${esc(r.phone)}</td>
+          <td class="px-5 py-4 text-muted"><a href="mailto:${esc(r.email)}" class="hover:text-euca break-all">${esc(r.email)}</a></td>
+          <td class="px-5 py-4 text-muted max-w-xs"><span class="line-clamp-2">${esc(r.message) || '<span class="text-muted/50">—</span>'}</span></td>
+          <td class="px-5 py-4 text-muted whitespace-nowrap">${esc(fmtDate(r.date))}</td>
+          <td class="px-5 py-4 text-right"><button data-del-req="${i}" class="text-red-600 hover:text-red-700 cursor-pointer" aria-label="Delete request"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6"/></svg></button></td>
+        </tr>
+      `).join('');
+    }
+    $('#reqTableBody').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-del-req]');
+      if (!btn) return;
+      const i = +btn.dataset.delReq;
+      const reqs = store.get(KEYS.requests, []);
+      reqs.splice(i, 1);
+      store.set(KEYS.requests, reqs);
+      renderRequests();
+      toast('Request deleted.');
+    });
+    $('#clearReqBtn').addEventListener('click', () => {
+      if (!store.get(KEYS.requests, []).length) return;
+      if (confirm('Delete all consultation requests? This cannot be undone.')) {
+        store.set(KEYS.requests, []);
+        renderRequests();
+        toast('All requests cleared.');
+      }
+    });
+
+    /* ---- Doctor management (CRUD + image upload) ---- */
+    let pendingPhoto = ''; // Base64 of currently staged upload (or existing on edit)
+
+    // Downscale + compress uploaded image so LocalStorage stays lean and layout stays crisp
+    function processImage(file) {
+      return new Promise((resolve, reject) => {
+        if (!file.type.startsWith('image/')) { reject(new Error('Not an image')); return; }
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => {
+            const MAX = 640; // px on the long edge
+            let { width, height } = img;
+            if (width > height && width > MAX) { height = Math.round(height * MAX / width); width = MAX; }
+            else if (height > MAX) { width = Math.round(width * MAX / height); height = MAX; }
+            const canvas = document.createElement('canvas');
+            canvas.width = width; canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', 0.82));
+          };
+          img.onerror = reject;
+          img.src = reader.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function setPreview(dataUrl) {
+      const img = $('#doc_preview'), ph = $('#doc_preview_ph'), clr = $('#doc_photo_clear');
+      pendingPhoto = dataUrl || '';
+      if (dataUrl) {
+        img.src = dataUrl; img.classList.remove('hidden'); ph.classList.add('hidden'); clr.classList.remove('hidden');
+      } else {
+        img.removeAttribute('src'); img.classList.add('hidden'); ph.classList.remove('hidden'); clr.classList.add('hidden');
+      }
+    }
+
+    $('#doc_photo').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const dataUrl = await processImage(file);
+        setPreview(dataUrl);
+      } catch (_) {
+        toast('Could not read that image. Please try another.', 'error');
+      } finally {
+        e.target.value = ''; // allow re-selecting same file
+      }
+    });
+    $('#doc_photo_clear').addEventListener('click', () => setPreview(''));
+
+    function resetDoctorForm() {
+      $('#doc_id').value = '';
+      $('#doc_name').value = '';
+      $('#doc_spec').value = '';
+      setPreview('');
+      $('#docFormTitle').textContent = 'Add a doctor';
+      $('#doc_submit').textContent = 'Add Doctor';
+      $('#doc_reset').classList.add('hidden');
+    }
+    $('#doc_reset').addEventListener('click', resetDoctorForm);
+
+    $('#doctorForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id = $('#doc_id').value;
+      const name = $('#doc_name').value.trim();
+      const specialty = $('#doc_spec').value.trim();
+      if (!name || !specialty) { toast('Name and specialty are required.', 'error'); return; }
+
+      const docs = getDoctors();
+      if (id) { // edit
+        const idx = docs.findIndex(d => d.id === id);
+        if (idx > -1) docs[idx] = { ...docs[idx], name, specialty, photo: pendingPhoto };
+      } else {  // add
+        docs.push({ id: 'd' + Date.now(), name, specialty, photo: pendingPhoto });
+      }
+      const ok = store.set(KEYS.doctors, docs);
+      if (!ok) { toast('Storage full — try a smaller image.', 'error'); return; }
+
+      renderDoctorsAdmin();
+      renderDoctorsPublic();
+      resetDoctorForm();
+      toast(id ? 'Doctor updated.' : 'Doctor added.');
+    });
+
+    $('#adminDoctorList').addEventListener('click', (e) => {
+      const editBtn = e.target.closest('[data-edit]');
+      const delBtn  = e.target.closest('[data-del]');
+      if (editBtn) {
+        const d = getDoctors().find(x => x.id === editBtn.dataset.edit);
+        if (!d) return;
+        $('#doc_id').value = d.id;
+        $('#doc_name').value = d.name;
+        $('#doc_spec').value = d.specialty;
+        setPreview(d.photo || '');
+        $('#docFormTitle').textContent = 'Edit doctor';
+        $('#doc_submit').textContent = 'Save Changes';
+        $('#doc_reset').classList.remove('hidden');
+        $('#doctorForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      if (delBtn) {
+        const d = getDoctors().find(x => x.id === delBtn.dataset.del);
+        if (d && confirm(`Remove ${d.name} from the team?`)) {
+          store.set(KEYS.doctors, getDoctors().filter(x => x.id !== delBtn.dataset.del));
+          renderDoctorsAdmin();
+          renderDoctorsPublic();
+          if ($('#doc_id').value === delBtn.dataset.del) resetDoctorForm();
+          toast('Doctor removed.');
+        }
+      }
+    });
+
+    /* ---- Password management ---- */
+    $('#pwChangeForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const cur = $('#pw_current').value;
+      const nw  = $('#pw_new').value;
+      const cf  = $('#pw_confirm').value;
+      const real = store.get(KEYS.pw, 'admin');
+      if (cur !== real) { toast('Current password is incorrect.', 'error'); return; }
+      if (nw.length < 4) { toast('New password must be at least 4 characters.', 'error'); return; }
+      if (nw !== cf) { toast('New passwords do not match.', 'error'); return; }
+      store.set(KEYS.pw, nw);
+      e.target.reset();
+      toast('Password updated successfully.');
+    });
+
+    // Simulated email verification reset
+    let resetCode = null;
+    $('#sendCodeBtn').addEventListener('click', () => {
+      const email = $('#reset_email').value.trim();
+      if (!isEmail(email)) { toast('Enter a valid email address.', 'error'); return; }
+      resetCode = String(Math.floor(100000 + Math.random() * 900000));
+      $('#reset_email_echo').textContent = email;
+      $('#demoCode').textContent = resetCode;
+      $('#resetStep1').classList.add('hidden');
+      $('#resetStep2').classList.remove('hidden');
+      $('#reset_code').focus();
+      toast('Verification code sent (simulated).');
+    });
+    $('#cancelResetBtn').addEventListener('click', () => {
+      resetCode = null;
+      $('#resetStep2').classList.add('hidden');
+      $('#resetStep1').classList.remove('hidden');
+      $('#reset_code').value = ''; $('#reset_new').value = ''; $('#reset_confirm').value = '';
+    });
+    $('#verifyResetBtn').addEventListener('click', () => {
+      const code = $('#reset_code').value.trim();
+      const nw = $('#reset_new').value;
+      const cf = $('#reset_confirm').value;
+      if (code !== resetCode) { toast('Incorrect verification code.', 'error'); return; }
+      if (nw.length < 4) { toast('New password must be at least 4 characters.', 'error'); return; }
+      if (nw !== cf) { toast('Passwords do not match.', 'error'); return; }
+      store.set(KEYS.pw, nw);
+      resetCode = null;
+      $('#resetStep2').classList.add('hidden');
+      $('#resetStep1').classList.remove('hidden');
+      $('#reset_code').value = ''; $('#reset_new').value = ''; $('#reset_confirm').value = '';
+      toast('Password reset successfully.');
+    });
+
+    /* ------------------------------------------------------------- */
+    /* Scroll reveal + animated counters (IntersectionObserver)       */
+    /* ------------------------------------------------------------- */
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let revealObserver;
+    const REVEAL_SEL = '.reveal, .svc-card';
+    function revealObserve(root = document) {
+      if (prefersReduced) { $$(REVEAL_SEL, root).forEach(el => el.classList.add('in')); return; }
+      if (!revealObserver) {
+        revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(en => {
+            if (en.isIntersecting) { en.target.classList.add('in'); revealObserver.unobserve(en.target); }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      }
+      $$(REVEAL_SEL, root).filter(el => !el.classList.contains('in')).forEach(el => revealObserver.observe(el));
+    }
+
+    function animateCounters() {
+      const counters = $$('.counter');
+      if (prefersReduced) {
+        counters.forEach(c => {
+          const dec = c.dataset.decimal ? +c.dataset.decimal : 0;
+          const target = +c.dataset.target / (dec ? Math.pow(10, dec) : 1);
+          c.textContent = dec ? target.toFixed(dec) : target;
+        });
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (!en.isIntersecting) return;
+          const el = en.target;
+          const raw = +el.dataset.target;
+          const dec = el.dataset.decimal ? +el.dataset.decimal : 0;
+          const end = dec ? raw / Math.pow(10, dec) : raw;
+          const dur = 1400; const start = performance.now();
+          function tick(now) {
+            const p = Math.min((now - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+            const val = end * eased;
+            el.textContent = dec ? val.toFixed(dec) : Math.round(val).toLocaleString('en-US');
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = dec ? end.toFixed(dec) : end.toLocaleString('en-US');
+          }
+          requestAnimationFrame(tick);
+          io.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      counters.forEach(c => io.observe(c));
+    }
+
+    /* ------------------------------------------------------------- */
+    /* Navigation behavior: scroll shadow + mobile menu               */
+    /* ------------------------------------------------------------- */
+    const nav = $('#nav');
+    const progress = $('#progress');
+    let ticking = false;
+    function onScroll() {
+      const y = window.scrollY;
+      nav.classList.toggle('pt-2', y > 20);
+      nav.classList.toggle('sm:pt-2', y > 20);
+      // scroll progress bar
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = `scaleX(${h > 0 ? Math.min(y / h, 1) : 0})`;
+      // scroll-driven parallax for floating orbs
+      if (!prefersReduced) {
+        parallaxEls.forEach(el => {
+          const speed = parseFloat(el.dataset.par) || 0;
+          el.style.transform = `translate3d(${el._px || 0}px, ${(y * speed) / 40}px, 0)`;
+        });
+      }
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(onScroll);
+    }, { passive: true });
+
+    const menuBtn = $('#menuBtn');
+    const mobileMenu = $('#mobileMenu');
+    let menuOpen = false;
+    function setMenu(open) {
+      menuOpen = open;
+      menuBtn.setAttribute('aria-expanded', String(open));
+      mobileMenu.classList.toggle('opacity-0', !open);
+      mobileMenu.classList.toggle('scale-95', !open);
+      mobileMenu.classList.toggle('pointer-events-none', !open);
+    }
+    menuBtn.addEventListener('click', () => setMenu(!menuOpen));
+    $$('#mobileMenu a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+    /* ------------------------------------------------------------- */
+    /* Hand-crafted micro-interactions                                */
+    /* ------------------------------------------------------------- */
+    const parallaxEls = $$('.parallax');
+    const heroCard = $('#heroCard');
+
+    // Pointer parallax for hero orbs + subtle 3D tilt on the hero card
+    if (!prefersReduced && window.matchMedia('(pointer:fine)').matches) {
+      let raf = null, mx = 0, my = 0;
+      const home = $('#home');
+      home.addEventListener('pointermove', (e) => {
+        const r = home.getBoundingClientRect();
+        mx = (e.clientX - r.left) / r.width - 0.5;   // -0.5 … 0.5
+        my = (e.clientY - r.top) / r.height - 0.5;
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = null;
+          parallaxEls.forEach(el => {
+            const speed = parseFloat(el.dataset.par) || 0;
+            el._px = mx * speed;               // store x so scroll handler keeps it
+            const baseY = (window.scrollY * speed) / 40;
+            el.style.transform = `translate3d(${mx * speed}px, ${baseY + my * speed}px, 0)`;
+          });
+          if (heroCard) heroCard.style.transform = `perspective(1000px) rotateY(${mx * 5}deg) rotateX(${-my * 5}deg)`;
+        });
+      });
+      home.addEventListener('pointerleave', () => {
+        if (heroCard) heroCard.style.transform = '';
+      });
+      if (heroCard) heroCard.style.transition = 'transform .5s cubic-bezier(.16,.84,.44,1)';
+    }
+
+    // Lazy-load the Google Maps iframe only when it nears the viewport
+    const mapFrame = $('#mapFrame');
+    if (mapFrame && mapFrame.dataset.src) {
+      const loadMap = () => { if (!mapFrame.src) mapFrame.src = mapFrame.dataset.src; };
+      if ('IntersectionObserver' in window) {
+        const mo = new IntersectionObserver((entries, obs) => {
+          entries.forEach(en => { if (en.isIntersecting) { loadMap(); obs.disconnect(); } });
+        }, { rootMargin: '300px' });
+        mo.observe(mapFrame);
+      } else { loadMap(); }
+    }
+
+    // Cursor-follow spotlight on luxe cards (delegated, cheap)
+    if (!prefersReduced && window.matchMedia('(pointer:fine)').matches) {
+      document.addEventListener('pointermove', (e) => {
+        const card = e.target.closest('.card-lux');
+        if (!card) return;
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        card.style.setProperty('--my', `${e.clientY - r.top}px`);
+      }, { passive: true });
+    }
+
+    /* ------------------------------------------------------------- */
+    /* Init                                                           */
+    /* ------------------------------------------------------------- */
+    $('#year').textContent = new Date().getFullYear();
+    renderServices();
+    renderReviews();
+    renderDoctorsPublic();
+    revealObserve(document);
+    animateCounters();
+    onScroll();
+  })();
+  </script>
+</body>
+</html>
